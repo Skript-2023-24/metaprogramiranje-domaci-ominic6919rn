@@ -61,6 +61,12 @@ class SpreadSheet
         @table.push(row[y..z])
       end
     end
+
+    @table[0].each do |columnName|
+      define_singleton_method (columnName.delete(" ")) do
+        self[columnName]
+      end
+    end
   end
 
   def to_s
@@ -167,6 +173,8 @@ def main
   p sheet + sheet1
 
   p sheet - sheet1
+
+  p sheet.PrvaKolona
 end
 
 main
